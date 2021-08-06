@@ -21,4 +21,7 @@
  <li>
      <a href="https://camel.apache.org/">Apache Camel</a>
   </li>
+  <li>
+     <a href="https://www.devmedia.com.br/apache-camel-entenda-o-que-e/28747">Dev Media - Apache Camel</a>
+  </li>
 </ul>
