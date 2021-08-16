@@ -4,7 +4,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 
-@Component
+@Component 
 public class ActiveMqReceiverRouter extends RouteBuilder {
 
 	@Override
