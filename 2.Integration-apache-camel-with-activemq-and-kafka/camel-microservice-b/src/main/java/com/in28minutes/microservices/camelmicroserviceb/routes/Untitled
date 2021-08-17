@@ -1,0 +1,4 @@
+Cause by: java.lang.IllegalArgumentException:
+Data format 'json-jackson' could not be created.
+Ensure that the data format is valid and associated Camel component is present on the 
+classpath
