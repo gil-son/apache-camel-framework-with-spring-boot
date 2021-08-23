@@ -27,6 +27,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
+		 <dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-http-starter</artifactId>
+			<version>3.11.0</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-spring-boot-starter</artifactId>
