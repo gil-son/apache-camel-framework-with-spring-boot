@@ -22,11 +22,17 @@ public class MyFileRouter extends RouteBuilder {
         		.log("Not an XML FILE")
         .end()
         //.log("${body}")
+        
+        .to("direct:log-file-values")
+        .to("file:files/output");
+        
+        from("direct:log-file-values")
+
         .log("${messageHistory} ${headers.CamelFileAbsolute}")
         .log("${messageHistory} ${file:absolute.path}") // https://camel.apache.org/components/latest/languages/file-language.html
         .log("${messageHistory} ${file:onlyname}")
-        
-        .to("file:files/output");
-
+        .log("${file:name} ${file:name.ext} ${file:name.noext} ${file:onlyname}")
+        .log("${file:onlyname.noext} ${file:path} ${file:absolute}")
+        .log("${routeId} ${camelId} ${body}");
     }
 }
