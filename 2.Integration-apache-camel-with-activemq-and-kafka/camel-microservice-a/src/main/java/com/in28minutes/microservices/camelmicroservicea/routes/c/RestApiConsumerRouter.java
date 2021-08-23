@@ -4,7 +4,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class RestApiConsumerRouter extends RouteBuilder {
 	
 	@Override
