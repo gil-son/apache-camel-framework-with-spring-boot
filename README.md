@@ -25,6 +25,15 @@
      <a href="https://camel.apache.org/">Apache Camel</a>
   </li>
   <li>
+     <a href="https://camel.apache.org/components/latest/languages/file-language.html">Apache Camel - Components - Languages - File</a>
+  </li>
+  <li>
+     <a href="https://camel.apache.org/components/latest/rest-component.html">Apache Camel - Components - Rest-Components</a>
+  </li>
+  <li>
+     <a href="https://camel.apache.org/components/latest/languages/simple-language.html">Apache Camel - Components - Simple-Language</a>
+  </li>
+  <li>
      <a href="https://www.devmedia.com.br/apache-camel-entenda-o-que-e/28747">Dev Media - Apache Camel</a>
   </li>
 </ul>
