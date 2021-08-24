@@ -45,11 +45,13 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 		   </root>
 		 */
 		
-		from("activemq:my-activemq-xml-queue")
-		.unmarshal()
-		.jacksonxml(CurrencyExchange.class)
-		.to("log:received-message-from-active-mq");
+		//from("activemq:my-activemq-xml-queue")
+		//.unmarshal()
+		//.jacksonxml(CurrencyExchange.class)
+		//.to("log:received-message-from-active-mq");
 		
+		from("activemq:split-queue")
+		.to("log:received-message-from-active-mq");
 	}
 	
 }
