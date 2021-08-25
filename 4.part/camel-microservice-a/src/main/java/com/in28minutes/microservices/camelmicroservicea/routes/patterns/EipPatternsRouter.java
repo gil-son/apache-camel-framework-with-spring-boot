@@ -1,11 +1,21 @@
 package com.in28minutes.microservices.camelmicroservicea.routes.patterns;
 
+import java.util.List;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EipPatternsRouter extends RouteBuilder {
 
+	
+	private final SplitterComponent splitterComponent;
+	
+	EipPatternsRouter(SplitterComponent splitterComponent){
+		this.splitterComponent = splitterComponent;
+	}
+	
+	
 	@Override
 	public void configure() throws Exception {
 		// Pipeline
@@ -29,14 +39,29 @@ public class EipPatternsRouter extends RouteBuilder {
 		
 		// Split file to many routes
 		
+		// from("file:files/csv")
+		// .unmarshal().csv()
+		// .split(body())
+		// .to("activemq:split-queue");
+		
+		// Message, Message2, Message3
+		
 		from("file:files/csv")
-		.unmarshal().csv()
-		.split(body())
+		.convertBodyTo(String.class)
+		// .split(body(),",")
+		.split(method(splitterComponent))
 		.to("activemq:split-queue");
-		
-		
-		
 		
 	}
 
+}
+
+
+
+@Component
+class SplitterComponent{
+	public List<String> sliptInput(String body){
+		return List.of("ABC","DEF","GHI");
+	}
+	
 }
