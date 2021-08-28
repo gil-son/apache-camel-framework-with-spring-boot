@@ -36,4 +36,16 @@
   <li>
      <a href="https://www.devmedia.com.br/apache-camel-entenda-o-que-e/28747">Dev Media - Apache Camel</a>
   </li>
+ 
+   <li>
+     <a href="https://camel.apache.org/camel-spring-boot/3.7.x/spring-boot.html">Apache Camel - Camel-Spring-Boot</a>
+  </li>
+  
+   <li>
+     <a href="https://camel.apache.org/camel-spring-boot/latest/">Apache Camel - Camel-Spring-Boot - Latest</a>
+  </li>
+  
+   <li>
+     <a href="https://access.redhat.com/webassets/avalon/d/red-hat-jboss-fuse/6.3/api-reference/camel/org/apache/camel/class-use/LoggingLevel.html"> Redhat - Apache Camel</a>
+  </li>
 </ul>
