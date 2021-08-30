@@ -40,6 +40,11 @@ public class EipPatternsRouter extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
+		
+		getContext().setTracing(true);
+		
+		errorHandler(deadLetterChannel("activemq:dead-letter-queue"));
+		
 		// Pipeline
 		
 		// Content Based - choice()
@@ -88,6 +93,9 @@ public class EipPatternsRouter extends RouteBuilder {
 		String routingSlip = "direct:endpoint1,direct:endpoint2";
 		//String routingSlip = "direct:endpoint1,direct:endpoint2,direct:endpoint3";
 		
+		
+		
+		
 		//		from("timer:routingSlip?period=10000")
 		//		.transform().constant("My Message is Hardcoded")
 		//		.routingSlip(simple(routingSlip));
@@ -106,6 +114,7 @@ public class EipPatternsRouter extends RouteBuilder {
 		
 		
 		from("direct:endpoint1")
+		.wireTap("log:wire-tap")
 		.to("{{endpoint-for-logging}}");		
 		
 		from("direct:endpoint2")
