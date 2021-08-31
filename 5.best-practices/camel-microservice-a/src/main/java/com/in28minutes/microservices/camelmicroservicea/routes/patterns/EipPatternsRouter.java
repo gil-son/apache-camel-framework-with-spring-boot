@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.in28minutes.microservices.camelmicroservicea.CurrencyExchange;
 
-@Component
+//@Component
 public class EipPatternsRouter extends RouteBuilder {
 
 	@Autowired
