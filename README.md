@@ -21,6 +21,24 @@
   <li>
      <a href="https://www.udemy.com/course/apache-camel-framework-with-spring-boot/">Learn Apache Camel Framework with Spring Boot</a>
   </li>
+   <li>
+     <a href="https://camel.apache.org/manual/latest/faq/why-the-name-camel.html">Why Camel?</a>
+  </li>
+   <li>
+     <a href="https://github.com/apache/camel-examples/tree/master/examples">Camel Examples</a>
+  </li>
+   <li>
+     <a href="https://camel.apache.org/camel-spring-boot/latest/spring-boot.html">Camel Spring Boot Configuration</a>
+  </li>
+   <li>
+     <a href="https://camel.apache.org/camel-spring-boot/latest/list.html">Complete Spring Boot Starters List</a>
+  </li>
+   <li>
+     <a href="https://github.com/apache/camel-spring-boot-examples">Camel Spring Boot Examples</a>
+  </li>
+  <li>
+     <a href="https://camel.apache.org/components/latest/eips/enterprise-integration-patterns.html">Enterprise Integration Patterns</a>
+  </li>
  <li>
      <a href="https://camel.apache.org/">Apache Camel</a>
   </li>
