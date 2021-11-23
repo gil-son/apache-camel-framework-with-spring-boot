@@ -66,4 +66,9 @@
    <li>
      <a href="https://access.redhat.com/webassets/avalon/d/red-hat-jboss-fuse/6.3/api-reference/camel/org/apache/camel/class-use/LoggingLevel.html"> Redhat - Apache Camel</a>
   </li>
+  
+  <li>
+     <a href="https://camel.apache.org/components/3.12.x/eips/enterprise-integration-patterns.html">EIP Pattners</a>
+  </li>
+  
 </ul>
