@@ -14,7 +14,7 @@
 	<name>camel-microservice-a</name>
 	<description>Demo project for Camel with Spring Boot</description>
 	<properties>
-		<java.version>14</java.version>
+		<java.version>15</java.version>
 		<camel.version>3.11.0</camel.version>
 	</properties>
 	<dependencies>
@@ -55,16 +55,16 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>14</source>
-					<target>14</target>
+					<source>15</source>
+					<target>15</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>14</source>
-					<target>14</target>
+					<source>15</source>
+					<target>15</target>
 				</configuration>
 			</plugin>
 		</plugins>
