@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @Component
 public class MyFirstTimerRouter extends RouteBuilder {
 
-//	@Autowired
-//    private GetCurrentTimeBean getCurrentTimeBean;
+	@Autowired
+    private GetCurrentTimeBean getCurrentTimeBean;
 
-//    @Autowired
-//    private SimpleLogginProcessingComponent simpleLogginProcessingComponent;
+    @Autowired
+    private SimpleLogginProcessingComponent simpleLogginProcessingComponent;
 
     @Autowired
      private Transform01 transform01;
@@ -32,22 +32,22 @@ public class MyFirstTimerRouter extends RouteBuilder {
         // Exchange[ExchangePattern: InOnly, BodyType: null, Body: [Body is null]]
         from("timer:first-timer") // queue || null
 
-                // TRANSFORMATION
+                // PROCESS AND TRANSFORMATION
                 .transform().constant("My Constant Message")
                 .process(transform01)
                 .log("the first route") // database
-//                .log("${body}") // 2. null
-//                .transform().constant("My constant Message") // 3. My constant Message
-//                .log("${body}") // 4. My constant Message
+                .log("${body}") // body =  null
+                .transform().constant("My constant Message") // 3. My constant Message
+                .log("${body}") // body = My constant Message
                 // .transform().constant("Time is now" + LocalDateTime.now())
 
                 // Processing =  receive | I want some operation or change | on the body of the message itself = from | That is called a processing
                 // Transformation = When a thing transform to other thing
-
-//                .bean(getCurrentTimeBean, "getCurrentTime") // .bean(getCurrentTimeBean, "getCurrentTime") // can add more methods
-//                .log("${body}") // Time now is2021-07-22T20:18:42.213169400]
-//                .bean(simpleLogginProcessingComponent)
-//                .log("${body}")
+//                .bean("getCurrentTimeBean")
+                //.bean(getCurrentTimeBean) // .bean(getCurrentTimeBean, "getCurrentTime") // can add more methods
+                //.log("${body}") // Time now is2021-07-22T20:18:42.213169400]
+                .bean(simpleLogginProcessingComponent) // did not replace, but concatenated
+                .log("${body}")
 //                .process(new SimpleLoggingProcessor())
                 .to("log:first-timer"); // database
 
@@ -63,15 +63,15 @@ class Transform01 implements Processor{
     }
 }
 
-//@Component
+@Component
 class GetCurrentTimeBean{
     public String getCurrentTime(){
-        return "Time now is" + LocalDateTime.now();
+        return "Time now is: " + LocalDateTime.now();
     }
 }
 
 
-//@Component
+@Component
 class SimpleLogginProcessingComponent{
     private Logger logger = LoggerFactory.getLogger(SimpleLogginProcessingComponent.class);
     public void process( String message){
