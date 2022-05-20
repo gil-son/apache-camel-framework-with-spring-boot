@@ -47,8 +47,8 @@ public class MyFirstTimerRouter extends RouteBuilder {
                 //.bean(getCurrentTimeBean) // .bean(getCurrentTimeBean, "getCurrentTime") // can add more methods
                 //.log("${body}") // Time now is2021-07-22T20:18:42.213169400]
                 .bean(simpleLogginProcessingComponent) // did not replace, but concatenated
-                .log("${body}")
-//                .process(new SimpleLoggingProcessor())
+                .log("${body}") // .bean(new SimpleLoggingProcessor()) .bean(new Transform01()) // bean = process or transform
+                .process(new SimpleLoggingProcessor())
                 .to("log:first-timer"); // database
 
     }
