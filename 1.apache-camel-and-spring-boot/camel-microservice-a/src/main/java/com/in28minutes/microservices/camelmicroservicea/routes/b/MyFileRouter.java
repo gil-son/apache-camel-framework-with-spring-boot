@@ -3,7 +3,7 @@ package com.in28minutes.microservices.camelmicroservicea.routes.b;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class MyFileRouter extends RouteBuilder {
 
 
