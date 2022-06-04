@@ -47,7 +47,7 @@ public class MyFirstTimerRouter extends RouteBuilder {
 }
 
 
-@Component
+//@Component
 class GetCurrentTimeBean{
     public String getCurrentTime(){
         return "Time now is" + LocalDateTime.now();
@@ -55,7 +55,7 @@ class GetCurrentTimeBean{
 }
 
 
-@Component
+//@Component
 class SimpleLogginProcessingComponent{
     private Logger logger = LoggerFactory.getLogger(SimpleLogginProcessingComponent.class);
     public void process( String message){
