@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 import com.in28minutes.microservices.camelmicroserviceb.CurrencyExchange;
 
 
-@Component 
+@Component
 public class ActiveMqReceiverRouter extends RouteBuilder {
 
-	@Autowired
-	private MyCurrencyExchangeProcessor myCurrencyExchangeProcessor;
+//	@Autowired
+//	private MyCurrencyExchangeProcessor myCurrencyExchangeProcessor;
 	
-	@Autowired
-	private MyCurrencyExchangeTransformer myCurrencyExchangeTransformer;
+//	@Autowired
+//	private MyCurrencyExchangeTransformer myCurrencyExchangeTransformer;
 	
 	@Override
 	public void configure() throws Exception {
@@ -45,16 +45,19 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 		   </root>
 		 */
 		
-		from("activemq:my-activemq-xml-queue")
-		.unmarshal()
-		.jacksonxml(CurrencyExchange.class)
-		.to("log:received-message-from-active-mq");
-		
+//		from("activemq:my-activemq-xml-queue")
+//		.unmarshal()
+//		.jacksonxml(CurrencyExchange.class)
+//		.to("log:received-message-from-active-mq");
+
+		from("activemq:my-activemq-queue")
+				.log("${body}")
+				.to("log:received-message-from-active-mq");
 	}
 	
 }
 
-@Component
+//Component
 class MyCurrencyExchangeProcessor {
 	
 	Logger logger = LoggerFactory.getLogger(MyCurrencyExchangeProcessor.class);
@@ -68,7 +71,7 @@ class MyCurrencyExchangeProcessor {
 }
 
 
-@Component
+//@Component
 class MyCurrencyExchangeTransformer{
 	
 	Logger logger = LoggerFactory.getLogger(MyCurrencyExchangeTransformer.class);
