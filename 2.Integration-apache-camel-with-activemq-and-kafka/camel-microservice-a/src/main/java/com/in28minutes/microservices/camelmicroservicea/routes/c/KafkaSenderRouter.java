@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
 
-@Component
+//@Component
 public class KafkaSenderRouter extends RouteBuilder {
 	
 	@Override

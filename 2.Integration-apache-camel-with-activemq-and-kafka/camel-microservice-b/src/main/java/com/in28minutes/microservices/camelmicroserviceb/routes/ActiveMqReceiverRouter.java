@@ -1,6 +1,8 @@
 package com.in28minutes.microservices.camelmicroserviceb.routes;
 
 import java.math.BigDecimal;
+import java.net.ConnectException;
+
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
@@ -23,9 +25,24 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 	
 	@Override
 	public void configure() throws Exception {
-		
+
+
+
 		//JSON
 		//CurrencyExchange
+
+
+		//1
+
+		 from("activemq:my-activemq-queue")
+				 .unmarshal()
+				 .json(JsonLibrary.Jackson, CurrencyExchange.class)
+		 .to("log:received-message-from-active-mq");
+
+
+
+		// 2
+
 		// {"id": 1000,"from": "USD","to": "INR","conversionMultiple": 70}
 		/*
 		 * from("activemq:my-activemq-queue") .unmarshal().json(JsonLibrary.Jackson,
@@ -33,6 +50,7 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 		 * .bean(myCurrencyExchangeTransformer)
 		 * .to("log:received-message-from-active-mq");
 		 */
+
 		
 		
 		// XML
@@ -50,9 +68,38 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 //		.jacksonxml(CurrencyExchange.class)
 //		.to("log:received-message-from-active-mq");
 
-		from("activemq:my-activemq-queue")
-				.log("${body}")
-				.to("log:received-message-from-active-mq");
+
+		// RECEIVED FROM QUEUE MESSAGE - CURRENCY EXCHANGE
+
+//		from("activemq:my-activemq-queue")
+//				.doTry()
+//					.log("${body}")
+				//.doCatch(ConnectException.class, ConnectException.class)
+//					.to("direct:catch")
+//				.doFinally()
+//					.to("direct:finally")
+//				.end()
+//					.to("log:received-message-from-active-mq");
+
+
+
+
+		// EXCEPTION
+
+
+		// EXCEPTION
+
+		from("direct:catch")
+				.log(" Catch: Error queue connection")
+				.end();
+
+
+		from("direct:finally")
+				.log("Finally: Error queue connection")
+				.end();
+
+
+
 	}
 	
 }
