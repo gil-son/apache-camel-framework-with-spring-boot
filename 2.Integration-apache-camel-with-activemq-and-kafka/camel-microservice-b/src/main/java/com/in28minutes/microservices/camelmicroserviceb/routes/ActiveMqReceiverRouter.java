@@ -17,39 +17,46 @@ import com.in28minutes.microservices.camelmicroserviceb.CurrencyExchange;
 @Component
 public class ActiveMqReceiverRouter extends RouteBuilder {
 
-//	@Autowired
-//	private MyCurrencyExchangeProcessor myCurrencyExchangeProcessor;
+	@Autowired
+	private MyCurrencyExchangeProcessor myCurrencyExchangeProcessor;
 	
-//	@Autowired
-//	private MyCurrencyExchangeTransformer myCurrencyExchangeTransformer;
+	@Autowired
+	private MyCurrencyExchangeTransformer myCurrencyExchangeTransformer;
 	
 	@Override
 	public void configure() throws Exception {
 
-
-
 		//JSON
-		//CurrencyExchange
+
+		//1 - CurrencyExchange
+
+//		 from("activemq:my-activemq-queue")
+//				 .unmarshal()
+//				 .json(JsonLibrary.Jackson, CurrencyExchange.class)
+//		 .to("log:received-message-from-active-mq");
 
 
-		//1
-
-		 from("activemq:my-activemq-queue")
-				 .unmarshal()
-				 .json(JsonLibrary.Jackson, CurrencyExchange.class)
-		 .to("log:received-message-from-active-mq");
-
-
-
-		// 2
+		//2 - CurrencyExchange - myCurrencyExchangeProcessor - myCurrencyExchangeTransformer
 
 		// {"id": 1000,"from": "USD","to": "INR","conversionMultiple": 70}
-		/*
-		 * from("activemq:my-activemq-queue") .unmarshal().json(JsonLibrary.Jackson,
-		 * CurrencyExchange.class) .bean(myCurrencyExchangeProcessor)
-		 * .bean(myCurrencyExchangeTransformer)
-		 * .to("log:received-message-from-active-mq");
-		 */
+
+//		from("activemq:my-activemq-queue")
+//				.unmarshal()
+//				.json(JsonLibrary.Jackson, CurrencyExchange.class)
+//				.bean(myCurrencyExchangeProcessor)
+//				.to("log:received-message-from-active-mq");
+
+		// 3 - CurrencyExchange - myCurrencyExchangeProcessor -
+
+		// {"id": 1000,"from": "USD","to": "INR","conversionMultiple": 70}
+
+		from("activemq:my-activemq-queue")
+			.unmarshal()
+			.json(JsonLibrary.Jackson, CurrencyExchange.class)
+			.bean(myCurrencyExchangeProcessor)
+			.bean(myCurrencyExchangeTransformer)
+		  	.to("log:received-message-from-active-mq");
+
 
 		
 		
@@ -104,7 +111,7 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
 	
 }
 
-//Component
+@Component
 class MyCurrencyExchangeProcessor {
 	
 	Logger logger = LoggerFactory.getLogger(MyCurrencyExchangeProcessor.class);
@@ -118,17 +125,18 @@ class MyCurrencyExchangeProcessor {
 }
 
 
-//@Component
+@Component
 class MyCurrencyExchangeTransformer{
 	
 	Logger logger = LoggerFactory.getLogger(MyCurrencyExchangeTransformer.class);
 	
 	public CurrencyExchange processMessage(CurrencyExchange currencyExchange) {
-		
+
+		// Is like a service
 		currencyExchange.setConversionMultiple(
 					currencyExchange.getConversionMultiple().multiply(BigDecimal.TEN));
 		
-		logger.info("Do some processing with currencyExchange.getConversionMultiple() value... which is {}");
+		logger.info("Do some processing with currencyExchange.getConversionMultiple() value... which is {}", currencyExchange.getConversionMultiple());
 		
 		return currencyExchange;
 	}
