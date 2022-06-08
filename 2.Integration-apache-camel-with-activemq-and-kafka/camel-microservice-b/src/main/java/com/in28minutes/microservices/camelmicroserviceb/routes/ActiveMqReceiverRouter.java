@@ -69,11 +69,21 @@ public class ActiveMqReceiverRouter extends RouteBuilder {
    				<conversionMultiple>70</conversionMultiple>
 		   </root>
 		 */
-		
+
+		// 1
+
 //		from("activemq:my-activemq-xml-queue")
+//				.log("Received: ${body}")
 //		.unmarshal()
 //		.jacksonxml(CurrencyExchange.class)
 //		.to("log:received-message-from-active-mq");
+
+		// 2
+
+		from("activemq:my-activemq-xml-queue")
+		.unmarshal()
+		.jacksonxml(CurrencyExchange.class)
+		.to("log:received-message-from-active-mq");
 
 
 		// RECEIVED FROM QUEUE MESSAGE - CURRENCY EXCHANGE
