@@ -32,9 +32,9 @@ public class ActiveMqSenderRouter extends RouteBuilder {
 
 		// SEND TO QUEUE FILE
 
-		// JSON
+		// JSON OR INPUT
 
-		from("file:files/json")
+		from("file:files/input")
 				.doTry()
 				.log("${body}")
 				.to("activemq:my-activemq-queue")
