@@ -15,7 +15,7 @@
 
 <hr/>
 
-### Sources
+### References
 
 <ul>
   <li>
